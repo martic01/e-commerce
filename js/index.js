@@ -1,15 +1,19 @@
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
+let spinTime = 2500
 // Save cart to localStorage
 function saveCartToLocalStorage() {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 
+
+
 // Fetch and display categories in the dropdown
 async function fetchCategories() {
     try {
+        showLoader();
         const res = await fetch('https://fakestoreapi.com/products/categories');
         const categories = await res.json();
+
         const categoryDropdown = document.getElementById('categoryDropdown');
         categories.forEach(category => {
             const option = document.createElement('option');
@@ -19,24 +23,41 @@ async function fetchCategories() {
         });
     } catch (err) {
         console.error('Error fetching categories:', err);
+        showLoader(true); // Show error message under the spinner
+    } finally {
+        setTimeout(hideLoader, spinTime); // Hide loader after 3 seconds
     }
 }
 
 // Fetch and display products, optionally filtered by category
 async function fetchAndDisplayProducts(category = null) {
     try {
+        showLoader();
         const res = await fetch('https://fakestoreapi.com/products');
         let products = await res.json();
 
         if (category && category !== 'all') {
             products = products.filter(product => product.category === category);
+            $('.firstsl').slideUp();
+        }else{
+             $('.firstsl').slideDown();
+        }
+
+        if (category) {
+            $('.aplli').text(category);
         }
 
         displayProducts(products);
+       
     } catch (err) {
         console.error('Error fetching products:', err);
+        showLoader(true); // Show error message under the spinner
+    } finally {
+        setTimeout(hideLoader, spinTime); // Hide loader after 3 seconds
     }
 }
+
+// The rest of your code remains unchanged...
 
 // Display products in the UI
 function displayProducts(productsToShow) {
@@ -57,23 +78,6 @@ function displayProducts(productsToShow) {
         productList.appendChild(productDiv);
     });
 }
-
-// function displayProducts(productsToShow) {
-//     const productList = document.getElementById('productList');
-//     productList.innerHTML = ''; // Clear existing products
-
-//     productsToShow.forEach(product => {
-//         const productDiv = document.createElement('div');
-//         productDiv.classList.add('col-4');
-//         productDiv.innerHTML = `
-//             <img src="${product.image}" alt="${product.title}" />
-//             <h4>${product.title}</h4>
-//             <p>₹${product.price.toFixed(2)}</p>
-//             <button class="btn" onclick="addToCart(${product.id})">Add to Cart</button>
-//         `;
-//         productList.appendChild(productDiv);
-//     });
-// }
 
 // Show product details in a modal
 async function showProductDetails(productId) {
@@ -108,6 +112,7 @@ function closeProductModal() {
     productModal.style.display = 'none';
 }
 
+
 // Add product to the cart
 async function addToCart(productId) {
     try {
@@ -137,7 +142,7 @@ async function addToCart(productId) {
         setTimeout(function () {
             addButton.css('background-color', '');
             addButton.text('Add to cart');
-        }, 5000);
+        }, 2000);
 
         updateCartView();
     } catch (err) {
@@ -203,17 +208,31 @@ async function handleSearch(query) {
             product.description.toLowerCase().includes(query)
         );
 
-        displayProducts(filteredProducts);
+        if (filteredProducts.length === 0) {
+            displayNoResultsMessage(); // Call the function to show the "no results found" message
+        } else {
+            displayProducts(filteredProducts);
+        }
     } catch (err) {
         console.error('Error fetching products for search:', err);
     }
 }
 
+// Function to display a "No results found" message
+function displayNoResultsMessage() {
+    const productList = document.getElementById('productList');
+    productList.innerHTML = ''; // Clear any existing products
+    productList.innerHTML = '<p class="no-results">No results found for your search.</p>';
+}
+
+
+
+
 // Initialize the page
 $(document).ready(() => {
     // Fetch and display categories
     fetchCategories();
-
+   
     if (cart.length >= 1) {
         $('.cartcount').show();
         $('.cartcount').text(cart.length);
@@ -229,8 +248,10 @@ $(document).ready(() => {
         let input = $('#searchInput').val().trim();
         if (input !== "") {
             $('.rem').show();
+            $('.firstsl').slideUp()
         } else {
             $('.rem').hide();
+            $('.firstsl').slideDown()
         }
         handleSearch(this.value.toLowerCase());
     });
