@@ -1114,22 +1114,8 @@ t {
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
+  overflow: hidden;
   background-color: rgba(0, 0, 0, 0.8);
-}
-
-.modal::-webkit-scrollbar {
-  width: 8px;
-}
-
-.modal::-webkit-scrollbar-track {
-  background-color: #b956e05b;
-  border-radius: 10px;
-}
-
-.modal::-webkit-scrollbar-thumb {
-  background-color: #310442;
-  border-radius: 10px;
 }
 
 .modal-content {
@@ -1138,14 +1124,28 @@ t {
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
+  height: 97%;
   max-width: 600px;
   text-align: center;
   position: relative;
+  overflow: auto;
+}
+.modal-content::-webkit-scrollbar {
+  width: 12px;
 }
 
+.modal-content::-webkit-scrollbar-track {
+  background-color: #b956e05b;
+  border-radius: 10px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background-color: #e724de;
+  border-radius: 10px;
+}
 .modal-content img {
   max-width: 100%;
-  height: auto;
+  height: 70%;
 }
 
 .modal-content .close {

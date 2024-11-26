@@ -122,7 +122,7 @@ async function showProductDetails(productId) {
 
 
 // Close the product modal
-function closeProductModal() {
+export function closeProductModal() {
     const productModal = document.getElementById('productModal');
     productModal.style.display = 'none';
     // Stop any ongoing speech

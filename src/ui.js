@@ -2,11 +2,13 @@ import './css/bootstrap.css';
 import './css/styles.css';
 import $ from 'jquery';
 import './bootstrap.min.js';
-import { fetchCategories, fetchAndDisplayProducts } from './product.js';
+import { fetchCategories, fetchAndDisplayProducts, closeProductModal } from './product.js';
 import { handleSearch } from './search.js';
 import { updateCartView, cartin } from './cart.js';
 
 let currentcart = cartin()
+let scrollTime = 15
+let scrollInterval;
 // function speak(text) {
 export function speak(text) {
     const text_speak = new SpeechSynthesisUtterance(text);
@@ -21,11 +23,11 @@ function wishMe() {
     const hour = day.getHours();
 
     if (hour >= 0 && hour < 12) {
-        speak("Good Morning! Welcome to the store.");
+        speak("Good Morning! Welcome to we shop.");
     } else if (hour >= 12 && hour < 17) {
-        speak("Good Afternoon! Welcome to the store.");
+        speak("Good Afternoon! Welcome to we shop.");
     } else {
-        speak("Good Evening! Welcome to the store.");
+        speak("Good Evening! Welcome to we shop.");
     }
 }
 
@@ -72,18 +74,44 @@ function takeCommand(message) {
     } else if (message.includes("refresh")) {
         speak("Refreshing the page...");
         location.reload();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     } else if (message.includes("scroll down")) {
         speak("Scrolling down...");
         window.scrollBy(0, window.innerHeight); // Scroll one screen down
     } else if (message.includes("scroll up")) {
         speak("Scrolling up...");
         window.scrollBy(0, -window.innerHeight); // Scroll one screen up
-    }else if (message.includes("scroll to top")) {
+    } else if (message.includes("scroll to top")) {
         speak("Scrolling to the top...");
         window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to the top smoothly
     } else if (message.includes("scroll to bottom")) {
         speak("Scrolling to the bottom...");
         window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); // Scroll to the bottom smoothly
+    } else if (message.includes("auto scroll top")) {
+        speak("Starting gradual scroll to the top...");
+        clearInterval(scrollInterval); // Ensure no other scroll interval is active
+        scrollInterval = setInterval(() => {
+            if (window.scrollY > 0) {
+                window.scrollBy(0, -10); // Gradually scroll up
+            } else {
+                clearInterval(scrollInterval); // Stop scrolling at the top
+                speak("Reached the top.");
+            }
+        }, scrollTime);
+    } else if (message.includes("auto scroll bottom")) {
+        speak("Starting gradual scroll to the bottom...");
+        clearInterval(scrollInterval); // Ensure no other scroll interval is active
+        scrollInterval = setInterval(() => {
+            if (window.scrollY + window.innerHeight < document.body.scrollHeight) {
+                window.scrollBy(0, 10); // Gradually scroll down
+            } else {
+                clearInterval(scrollInterval); // Stop scrolling at the bottom
+                speak("Reached the bottom.");
+            }
+        }, scrollTime);
+    } else if (message.includes("stop scroll")) {
+        speak("Stopping the scroll...");
+        clearInterval(scrollInterval); // Stop any active scrolling
     } else if (message.includes("click c")) {
         speak('ok...');
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -96,9 +124,11 @@ function takeCommand(message) {
         }
     } else if (message.includes("hello")) {
         speak('how are you doing, how may i be of help...');
-    }else if (message.includes("fine")) {
+    } else if (message.includes("fine")) {
         speak('ok, how may i be of help...');
-    }else {
+    } else if (message.includes("close")) {
+        closeProductModal(); // Scroll to the bottom smoothly
+    } else {
         speak("I didn't understand that command");
     }
 }
