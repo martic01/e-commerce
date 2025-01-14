@@ -17,7 +17,6 @@ export function speak(text) {
     text_speak.pitch = 1;
     window.speechSynthesis.speak(text_speak);
 }
-
 function wishMe() {
     const day = new Date();
     const hour = day.getHours();
@@ -52,6 +51,8 @@ recognition.onresult = (event) => {
 
 function takeCommand(message) {
     // Assuming categories are stored in the dropdown for reference
+    currentcart = cartin()
+
     const categoryDropdown = document.getElementById('categoryDropdown');
     const categories = Array.from(categoryDropdown.options).map(option => option.value);
 
@@ -109,7 +110,7 @@ function takeCommand(message) {
                 speak("Reached the bottom.");
             }
         }, scrollTime);
-    } else if (message.includes("stop scroll")) {
+    } else if (message.includes("stop")) {
         speak("Stopping the scroll...");
         clearInterval(scrollInterval); // Stop any active scrolling
     } else if (message.includes("click c")) {
@@ -137,6 +138,7 @@ function takeCommand(message) {
 $(document).ready(() => {
     const btn = document.querySelector('.talk');
     const content = document.querySelector('.content');
+
 
     btn.addEventListener('click', () => {
         content.value = "Listening...";

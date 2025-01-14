@@ -128,19 +128,23 @@ Embed a short video demonstration here to showcase your project in action.
 
 ## USage
 ### Usage Instructions
-* 🚀 Voice Commands
-* Search by Category:
+#### 🚀 Voice Commands
+## Search by Category:
 * Say: "Category Electronics"
-* Search by Product:
+
+## Search by Product:
 * Say: "Product Laptop"
-* Scroll:
-* "Scroll down": Scrolls one screen down.
+
+## Scroll:
+* "Scroll down": Scrolls once down.
+* "Scroll up": Scrolls once up.
 * "Scroll to top": Scrolls smoothly to the top of the page.
 * "Scroll to bottom": Scrolls smoothly to the bottom of the page.
-* "Auto scroll to top": Gradually scrolls to the top.
-* "Auto scroll to bottom": Gradually scrolls to the bottom.
-* "Stop scroll": Stops the auto-scrolling.
-* Cart Management:
+* "Auto scroll top": Gradually scrolls to the top.
+* "Auto scroll bottom": Gradually scrolls to the bottom.
+* "Stop": Stops the auto-scrolling.
+
+## Cart Management:
 * "Click C": Toggles the cart view.
 * "Item in C": Reads the number of items in the cart.
 

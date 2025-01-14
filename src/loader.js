@@ -1,6 +1,7 @@
 import './css/bootstrap.css';
 import './css/styles.css';
 import './bootstrap.min.js';
+import { speak } from './ui.js';
 // loader.js
 export function showLoader(showError = false) {
     const loader = document.getElementById('loader');
@@ -8,6 +9,7 @@ export function showLoader(showError = false) {
 
     loader.style.display = 'flex';
     if (showError) {
+        speak("Please check your internet connection.");
         errorMessage.style.display = 'block';
         errorMessage.textContent = 'Please check your internet connection.';
     } else {
