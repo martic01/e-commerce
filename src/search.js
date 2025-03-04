@@ -25,8 +25,4 @@ export async function handleSearch(query) {
     }
 }
 
-function displayNoResultsMessage() {
-    const productList = document.getElementById('productList');
-    productList.innerHTML = '<p class="no-results">No results found for your search.</p>';
-    speak('No results found for your search.')
-}
+
