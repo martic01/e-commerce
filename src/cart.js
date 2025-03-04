@@ -4,10 +4,10 @@ import $ from 'jquery';
 import './bootstrap.min.js';
 
 
- let cart = JSON.parse(localStorage.getItem('cart')) || [];
- export function cartin(){
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+export function cartin() {
     return cart
- }
+}
 // Save cart to localStorage
 export function saveCartToLocalStorage() {
     localStorage.setItem('cart', JSON.stringify(cart));
@@ -82,15 +82,21 @@ export function updateCartView() {
         itemDiv.classList.add('cart-item');
         itemDiv.innerHTML = `
             <img src="${item.image}" alt="${item.title}" width="50" class="cart-item-image" />
-            <span class="cart-item-title" data-id="${item.id}">${item.title} - (x${item.quantity})</span>
+            <span class="cart-item-title" data-id="${item.id}">${item.title} - (x<input data-id="${item.id}" class ='cart-input'  type ="number" value="${item.quantity}">)</span>
             <span>₹${(item.price * item.quantity).toFixed(2)}</span>
             <button class="btn-remove bhover" onclick="removeFromCart(${item.id})">Remove</button>
         `;
         cartItemsDiv.appendChild(itemDiv);
 
-        // Add event listener to the title and image to show product details
-        itemDiv.querySelector('.cart-item-title').addEventListener('click', () => showProductDetails(item.id));
         itemDiv.querySelector('.cart-item-image').addEventListener('click', () => showProductDetails(item.id));
+        itemDiv.querySelector('.cart-input').addEventListener('input', function () {
+            let val = $(this)
+            let value = val.val();
+            let id = val.attr('data-id');
+            if (value <= 0) {
+                removeFromCart(id);
+            };
+        })
     });
 
     const totalDiv = document.createElement('div');
@@ -98,3 +104,4 @@ export function updateCartView() {
     totalDiv.innerHTML = `<strong>Total: ₹${total.toFixed(2)}</strong>`;
     cartItemsDiv.appendChild(totalDiv);
 }
+

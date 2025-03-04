@@ -14,7 +14,7 @@ window.closeProductModal = closeProductModal;
 
 
 
-let spinTime = 2500
+const spinTime = 2500
 
 export async function fetchCategories() {
     try {
@@ -29,12 +29,13 @@ export async function fetchCategories() {
             option.textContent = category.charAt(0).toUpperCase() + category.slice(1);
             categoryDropdown.appendChild(option);
         });
+        setTimeout(hideLoader, spinTime);
     } catch (err) {
-        console.error('Error fetching categories:', err);
         showLoader(true); // Show error message under the spinner
-    } finally {
-        setTimeout(hideLoader, spinTime); // Hide loader after 3 seconds
     }
+    //  finally {
+    //     setTimeout(hideLoader, spinTime); // Hide loader after 3 seconds
+    // }
 }
 
 // Fetch and display products, optionally filtered by category
@@ -56,13 +57,14 @@ export async function fetchAndDisplayProducts(category = null) {
         }
 
         displayProducts(products);
+        setTimeout(hideLoader, spinTime);
        
     } catch (err) {
-        console.error('Error fetching products:', err);
         showLoader(true); // Show error message under the spinner
-    } finally {
-        setTimeout(hideLoader, spinTime); // Hide loader after 3 seconds
     }
+    //  finally {
+    //     setTimeout(hideLoader, spinTime); // Hide loader after 3 seconds
+    // }
 }
 
 // The rest of your code remains unchanged...

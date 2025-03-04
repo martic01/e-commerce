@@ -42,7 +42,6 @@ recognition.onresult = (event) => {
     const content = document.querySelector('.content');
     const currentIndex = event.resultIndex;
     const transcript = event.results[currentIndex][0].transcript.toLowerCase();
-    console.log("Transcript:", transcript); // Log the recognized speech
     content.value = transcript;
     takeCommand(transcript);
 };
@@ -199,6 +198,10 @@ $(document).ready(() => {
     // Checkout button to hide cart
     document.getElementById('checkoutButton').addEventListener('click', function () {
         $('#cart').slideUp();
+    });
+
+    document.getElementById('home').addEventListener('click', function () {
+        fetchAndDisplayProducts("all");
     });
 
     // Initialize cart view

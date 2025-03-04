@@ -62,13 +62,13 @@ span {
 }
 
 :root {
-  --primary-color: #a924dd;
+  --primary-color: #2e2d2e;
   --secoundary-color: #FFF;
   --third-color: #4e0869;
   --alpha-color: #111111a9;
   --Wtext-color: #fff;
   --Btext-color: #181818;
-  --Ptext-color: #a924dd;
+  --Ptext-color: #d591f0;
   --text-size1: 16px;
   --text-size2: 20px;
   --text-sizeB: 40px;
@@ -826,6 +826,7 @@ form a {
   font-size: var(--text-size2);
   font-weight: 600;
 }
+
 div::-webkit-scrollbar {
   width: 12px;
 }
@@ -839,6 +840,7 @@ div::-webkit-scrollbar-thumb {
   background-color: #0f0f0f;
   border-radius: 10px;
 }
+
 .nav .tanin:first-child {
   height: 98%;
   justify-content: space-around;
@@ -908,7 +910,7 @@ div::-webkit-scrollbar-thumb {
   position: relative;
   width: 600px;
   height: 98%;
-  
+
 }
 
 .nav .tanin:nth-child(2) input {
@@ -938,8 +940,9 @@ div::-webkit-scrollbar-thumb {
 .nav .tanin:nth-child(3) {
   width: 100px;
   height: 98%;
- 
+
 }
+
 .nav .tanin:nth-child(3):hover .text {
   color: var(--Ptext-color);
   text-align: center;
@@ -965,13 +968,13 @@ div::-webkit-scrollbar-thumb {
 
 .nav .tanin:nth-child(5) div p {
   position: absolute;
-  top: 18px;
-  right: 48px;
-  width: 15px;
-  height: 15px;
-  border-radius: 7.5px;
+  top: 14px;
+  right: 53px;
+  width: 13px;
+  height: 13px;
+  border-radius: 6.5px;
   align-content: center;
-  font-size: 13px;
+  font-size: 11px;
   color: var(--Wtext-color);
   background-color: var(--primary-color);
 }
@@ -990,7 +993,7 @@ div::-webkit-scrollbar-thumb {
 
 .rem {
   position: absolute;
-  right: 230px;
+  right: 215px;
   width: 40px;
   height: 40px;
 }
@@ -1008,15 +1011,17 @@ div::-webkit-scrollbar-thumb {
   color: rgb(99, 99, 99);
   background-color: rgb(236, 234, 234);
 }
-.dnav div  {
+
+.dnav div {
   width: 82%;
   height: 100%;
   align-content: center;
   margin: auto;
-  background-color:rgba(0, 0, 0, 0.774);
+  background-color: rgba(0, 0, 0, 0.774);
   padding-left: 10px;
   text-align: left;
 }
+
 .dnav div p {
   font-size: 16px;
   height: 100%;
@@ -1026,13 +1031,15 @@ div::-webkit-scrollbar-thumb {
 .dnav div p span {
   font-size: 16px;
 }
+
 .dnav div p span:nth-child(2) {
   font-size: 16px;
   color: var(--Ptext-color);
 }
+
 .dnav div p span:hover {
   font-size: 13px;
-  color: rgba(10, 10, 10, 0.514);
+  color: rgba(255, 254, 254, 0.952);
 }
 
 .drop {
@@ -1104,7 +1111,8 @@ t {
   height: 30px;
   background-color: #06619e;
 }
-#hdacct, 
+
+#hdacct,
 #hdhep {
   position: absolute;
   top: 60px;
@@ -1138,6 +1146,7 @@ t {
   position: relative;
   overflow: auto;
 }
+
 .modal-content::-webkit-scrollbar {
   width: 12px;
 }
@@ -1151,6 +1160,7 @@ t {
   background-color: #e724de;
   border-radius: 10px;
 }
+
 .modal-content img {
   max-width: 100%;
   height: 70%;
@@ -1213,6 +1223,14 @@ t {
   /* Space between spinner and error message */
 }
 
+.cart-input {
+  width: 50px;
+  height: 20px;
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+}
+
 .error-message {
   font-size: 1.5rem;
   font-weight: 600;
@@ -1240,59 +1258,64 @@ t {
   text-align: center;
   color: #333;
 }
-.talk{
+
+.talk {
   color: var(--primary-color);
 }
 
 @media (max-width: 575.98px) {
 
-  .ads div{
+  .ads div {
     width: 300px;
   }
+
   .logo {
     width: 200px;
   }
+
   .nav .tanin:nth-child(2) {
     width: 600px;
   }
-  
+
   .nav .tanin:nth-child(3) {
-    
+
     width: 100px;
   }
+
   .nav .tanin:nth-child(4) {
     width: 100px;
-   
+
   }
+
   .nav .tanin:nth-child(5) {
     width: 100px;
-   
+
   }
 }
 
 
 @media (min-width: 576px) and (max-width: 767.98px) {
-  .ads div{
+  .ads div {
     width: 500px;
   }
-  
+
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
-  .ads div{
+  .ads div {
     width: 700px;
   }
 }
 
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
-  .ads div{
+  .ads div {
     width: 800px;
   }
 }
 
 @media (min-width: 1200px) {
-  .ads div{
+  .ads div {
     width: 1000px;
   }
 }
