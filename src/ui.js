@@ -6,17 +6,46 @@ import { fetchCategories, fetchAndDisplayProducts, closeProductModal } from './p
 import { handleSearch } from './search.js';
 import { updateCartView, cartin } from './cart.js';
 
-let currentcart = cartin()
-let scrollTime = 15
+let currentcart = cartin();
+let scrollTime = 15;
 let scrollInterval;
-// function speak(text) {
+
+// Prevent repeating same command continuously
+let lastCommand = '';
+let lastCommandTime = 0;
+
+// ---- Speech recognition setup ----
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+const recognition = new SpeechRecognition();
+
+// Configure recognition
+recognition.continuous = false;      // listen for one phrase at a time
+recognition.interimResults = false;  // only final results
+recognition.lang = 'en-US';
+recognition.maxAlternatives = 1;
+
+// ---- Text-to-speech ----
 export function speak(text) {
+    if (!text || typeof text !== 'string') return;
+
+    // Stop any ongoing speech so it doesn't overlap
+    window.speechSynthesis.cancel();
+
     const text_speak = new SpeechSynthesisUtterance(text);
     text_speak.rate = 1;
-    text_speak.volume = 3;
+    text_speak.volume = 1; // valid range is 0–1
     text_speak.pitch = 1;
+
+    // Temporarily stop recognition so it doesn't hear its own voice
+    try {
+        recognition.abort();
+    } catch (e) {
+        // ignore if recognition is not running
+    }
+
     window.speechSynthesis.speak(text_speak);
 }
+
 function wishMe() {
     const day = new Date();
     const hour = day.getHours();
@@ -35,22 +64,35 @@ window.addEventListener('load', () => {
     wishMe();
 });
 
-const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-const recognition = new SpeechRecognition();
-
+// Handle recognition results
 recognition.onresult = (event) => {
     const content = document.querySelector('.content');
     const currentIndex = event.resultIndex;
-    const transcript = event.results[currentIndex][0].transcript.toLowerCase();
+    const result = event.results[currentIndex];
+
+    // Only act on final, complete result
+    if (!result.isFinal) return;
+
+    const transcript = result[0].transcript.toLowerCase().trim();
     content.value = transcript;
     takeCommand(transcript);
 };
 
-
-
 function takeCommand(message) {
+    message = message.trim();
+    if (!message) return;
+
+    const now = Date.now();
+
+    // Ignore immediate repeats of the same full command (within 1.5 seconds)
+    if (message === lastCommand && now - lastCommandTime < 1500) {
+        return;
+    }
+    lastCommand = message;
+    lastCommandTime = now;
+
     // Assuming categories are stored in the dropdown for reference
-    currentcart = cartin()
+    currentcart = cartin();
 
     const categoryDropdown = document.getElementById('categoryDropdown');
     const categories = Array.from(categoryDropdown.options).map(option => option.value);
@@ -62,7 +104,7 @@ function takeCommand(message) {
         // Check if the category exists in the list
         if (categories.includes(category)) {
             speak(`category: ${category}`);
-            fetchAndDisplayProducts(category); // Call the function to filter products by category
+            fetchAndDisplayProducts(category); // filter products by category
         } else {
             speak(`Sorry, I could not find the category: ${category}`);
         }
@@ -70,7 +112,7 @@ function takeCommand(message) {
         const productName = message.replace("product", "").trim().toLowerCase();
         speak(`product: ${productName}`);
         handleSearch(productName);
-        $('.firstsl').slideUp() // Call the function to search for products
+        $('.firstsl').slideUp(); // hide first slider
     } else if (message.includes("refresh")) {
         speak("Refreshing the page...");
         location.reload();
@@ -112,11 +154,11 @@ function takeCommand(message) {
     } else if (message.includes("stop")) {
         speak("Stopping the scroll...");
         clearInterval(scrollInterval); // Stop any active scrolling
-    } else if (message.includes("click c")) {
+    } else if (message.includes("click cart") || message.includes("click cat") || message.includes("click cut") || message.includes("click cards") || message.includes("click card")) {
         speak('ok...');
         window.scrollTo({ top: 0, behavior: 'smooth' });
         $('#cart').fadeToggle();
-    } else if (message.includes("item in c")) {
+    } else if (message.includes("list cart") || message.includes("list cat") || message.includes("list cut") || message.includes("list cards") || message.includes("list card") ) {
         if (currentcart.length) {
             speak(`You have ${currentcart.length} product...`);
         } else {
@@ -126,32 +168,41 @@ function takeCommand(message) {
         speak('how are you doing, how may i be of help...');
     } else if (message.includes("fine")) {
         speak('ok, how may i be of help...');
-    }else if (message.includes("quiet")) {
+    } else if (message.includes("quiet")) {
         speak('Sorry...');
-         window.speechSynthesis.cancel();
+        setTimeout(() => {
+           window.speechSynthesis.cancel();  
+        },300);
+       
     } else if (message.includes("close")) {
-        closeProductModal(); // Scroll to the bottom smoothly
+        closeProductModal();
     } else {
         speak("I didn't understand that command");
     }
 }
 
-
 $(document).ready(() => {
     const btn = document.querySelector('.talk');
     const content = document.querySelector('.content');
 
-
     btn.addEventListener('click', () => {
         content.value = "Listening...";
-        recognition.start();
+        try {
+            recognition.start();
+        } catch (e) {
+            // Ignore if already started
+        }
     });
 
     window.addEventListener('keydown', (e) => {
         switch (e.key) {
             case 'z':
                 content.value = "Listening...";
-                recognition.start();
+                try {
+                    recognition.start();
+                } catch (err) {
+                    // Ignore if already started
+                }
                 break;
         }
     });
@@ -174,10 +225,10 @@ $(document).ready(() => {
         let input = $('#searchInput').val().trim();
         if (input !== "") {
             $('.rem').show();
-            $('.firstsl').slideUp()
+            $('.firstsl').slideUp();
         } else {
             $('.rem').hide();
-            $('.firstsl').slideDown()
+            $('.firstsl').slideDown();
         }
         handleSearch(this.value.toLowerCase());
     });
