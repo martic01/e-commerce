@@ -126,6 +126,9 @@ function takeCommand(message) {
         speak('how are you doing, how may i be of help...');
     } else if (message.includes("fine")) {
         speak('ok, how may i be of help...');
+    }else if (message.includes("quiet")) {
+        speak('Sorry...');
+         window.speechSynthesis.cancel();
     } else if (message.includes("close")) {
         closeProductModal(); // Scroll to the bottom smoothly
     } else {
