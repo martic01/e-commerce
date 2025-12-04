@@ -7,202 +7,304 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>e-commerce</title>
 </head>
+
 <body>
-    <div class="ads header" id="up">
-        <div class="adsbox">
-            <img src="../assets/images/top ads.gif" alt="">
+
+       <div id="loader" class="loader">
+            <div class="spinner"></div>
+            <p id="errorMessage" class="error-message" style="display: none;">Please check your internet connection.</p>
         </div>
-    </div>
-    <div class="header pin">
-        <nav class="nav flex font4">
-            <div class="tanin">
-                <div class="logo">weSHOP</div>
+
+    <section class="shop-page" id="shop-page">
+        <div class="ads header" id="up">
+            <div class="adsbox">
+                <img src="../assets/images/top ads.gif" alt="">
             </div>
-            <div class="tanin">
-                <div class="selg se talk"><i class="fa fa-microphone mb-1 "></i></div>
-                <input id="searchInput" placeholder="Search by Product, Brand or Categories" class="search content" type="text">
-                <div class="rem se" style="display: none;"><i class="fa fa-remove mb-1 "></i></div>
-                <select id="categoryDropdown" class="bhover">
-                    <option value="all">All Categories</option>
-                </select>
-            </div>
-            <div class="tanin">
-                <div class="smalimg text"><i class="fa fa-user mb-1 "></i></div>
-                <p class="text">Hi, <span class="usernm">user</span></p>
-                <div id="hdacct">
-                    <div class="drop acct flex2">
-                        <p><span><img src="../assets/images/back nlog.avif" alt=""></span> Account</p>
-                        <p><span></span> Orders</p>
-                        <p><span></span> inbox</p>
-                        <p><span></span> Saved Item</p>
-                        <p><span></span> Voucher</p>
-                        <div>
-                            <t>LOGOUT</t>
+        </div>
+        <div class="header pin">
+            <nav class="nav flex font4">
+                <div class="tanin">
+                    <div class="logo">weSHOP</div>
+                </div>
+                <div class="tanin">
+                    <div class="selg se talk"><i class="fa fa-microphone mb-1 "></i></div>
+                    <input id="searchInput" placeholder="Search by Product, Brand or Categories" class="search content"
+                        type="search">
+                    <!-- <div class="rem se" style="display: none;"><i class="fa fa-remove mb-1 "></i></div> -->
+                    <select id="categoryDropdown" class="bhover">
+                        <option value="all">All Categories</option>
+                    </select>
+                </div>
+                <div class="tanin">
+                    <div class="smalimg text"><i class="fa fa-user mb-1 "></i></div>
+                    <p class="text">Hi, <span class="usernm">user</span></p>
+                    <div id="hdacct">
+                        <div class="drop acct flex2">
+                            <p><span><img src="../assets/images/back nlog.avif" alt=""></span> Account</p>
+                            <p><span></span> Orders</p>
+                            <p><span></span> inbox</p>
+                            <div>
+                                <t>LOGOUT</t>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="tanin">
-                <div class="smalimg text"><i class="fa fa-phone mb-1 "></i></div>
-                <p class="text">Help</p>
-                <div id="hdhep">
-                    <div class="drop hep flex2">
-                        <p>Help center</p>
-                        <p>Place an order</p>
-                        <p>Payment Option</p>
-                        <p>Track order</p>
-                        <p>Cancel order</p>
-                        <p>Return & Refund</p>
-                        <button class="bhover">Chat</button>
+                <div class="tanin">
+                    <div class="smalimg text"><i class="fa fa-phone mb-1 "></i></div>
+                    <p class="text">Help</p>
+                    <div id="hdhep">
+                        <div class="drop hep flex2">
+                            <p>Help center</p>
+                            <p>Policy</p>
+                            <p>Return & Refund</p>
+                            <button class="bhover">Chat</button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="tanin" id="cartLink">
-                <a href="#bot" class="flex">
-                    <div class="smalimg">
-                        <img src="../assets/images/—Pngtree—black shopping cart containing a_16807981.png"/>
-                        <p class="cartcount flex" style="display: none;">0</p>
-                    </div>
-                    <p class="text addtocart">Cart</p>
-                </a>
-            </div>
+                <div class="tanin" id="cartLink">
+                    <a href="#bot" class="flex">
+                        <div class="smalimg">
+                            <img src="../assets/images/—Pngtree—black shopping cart containing a_16807981.png" />
+                            <p class="cartcount flex" style="display: none;">0</p>
+                        </div>
+                        <p class="text addtocart">Cart</p>
+                    </a>
+                </div>
 
-        </nav>
-        <nav class="dnav font3">
-            <div>
-                <p><span id="home" class="home">Home</span> >> <span class="aplli">all</span></p>
-            </div>
-        </nav>
-    </div>
+            </nav>
+            <nav class="dnav font3">
+                <div>
+                    <p><span id="home" class="home">Home</span> >> <span class="aplli">all</span></p>
+                </div>
+            </nav>
+        </div>
 
-    <!-- Featured Categories -->
-    <div id="carouselExampleAutoplaying" class="carousel slide categories firstsl" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <div class="row slide-cont">
-                    <div class="col-3 category-item" data-category="Clothing">
-                        <img src="../assets/images/sneakers.jpg" alt="" />
-                    </div>
-                    <div class="col-3 category-item" data-category="Electronics">
-                        <img src="../assets/images/smart watch.webp" alt="" />
-                    </div>
-                    <div class="col-3 category-item" data-category="Accessories">
-                        <img src="../assets/images/realistic-phone-with-social-media.jpg" alt="" />
-                       
+        <!-- Featured Categories -->
+        <div id="carouselExampleAutoplaying" class="carousel slide categories firstsl" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row slide-cont">
+                        <div class="col-3 category-item" data-category="Clothing">
+                            <img src="../assets/images/sneakers.jpg" alt="" />
+                        </div>
+                        <div class="col-3 category-item" data-category="Electronics">
+                            <img src="../assets/images/smart watch.webp" alt="" />
+                        </div>
+                        <div class="col-3 category-item" data-category="Accessories">
+                            <img src="../assets/images/realistic-phone-with-social-media.jpg" alt="" />
+
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="carousel-item">
-                <img src="../assets/images/Desktop-Homepage-Slider_-712x384.gif" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="../assets/images/Artboard-1.gif" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="../assets/images/Adidas_712X384_CPR.jpg" class="d-block w-100" alt="...">
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-
-
-    <!-- Featured Products -->
-    <div class="small-container">
-        <h2 class="title">Featured Products</h2>
-        <div class="row" id="productList">
-            <!-- Dynamic Products will be inserted here -->
-        </div>
-         <div id="bot"></div>
-    </div>
- 
-    <!-- Cart Section -->
-    <div class="small2 font3" id="cart" style="display: none;">
-        <h2>Your Cart</h2>
-        <div id="cartItems">
-            No item yet
-        </div>
-        <button id="checkoutButton" class="btn">Checkout</button>
-    </div>
-
-    <div id="productModal" class="modal">
-        <!-- Product details will be dynamically inserted here -->
-    </div>
-
-    <div id="carouselExampleAutoplaying" class="carousel slide categories" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <div class="row slide-cont">
-                    <div class="col-3 category-item" data-category="Clothing">
-                        <img src="../assets/images/BUY-2_updated.gif" alt="" />
-                    </div>
-                    <div class="col-3 category-item" data-category="Electronics">
-                        <img src="../assets/images/star roll.gif" alt="" />
-                    </div>
-                    <div class="col-3 category-item" data-category="Accessories">
-                        <img src="../assets/images/black.gif" alt="" />
-                    </div>
+                <div class="carousel-item">
+                    <img src="../assets/images/Desktop-Homepage-Slider_-712x384.gif" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="../assets/images/Artboard-1.gif" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="../assets/images/Adidas_712X384_CPR.jpg" class="d-block w-100" alt="...">
                 </div>
             </div>
-            <div class="carousel-item">
-                <img src="../assets/images/Desktop-Homepage-Slider_-712x384.gif" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="../assets/images/gadigan.webp" class="d-block w-100" alt="" style="object-fit: contain;" />
-                     
-            </div>
-            <div class="carousel-item">
-                <img src="../assets/images/smart watch.webp" class="d-block w-100" alt=""  style="object-fit: contain;"/>
-            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-
-    <div id="loader" class="loader">
-        <div class="spinner"></div>
-        <p id="errorMessage" class="error-message" style="display: none;">Please check your internet connection.</p>
-    </div>
 
 
-    <div class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="footer-col-1">
-                    <h3>Download Our App</h3>
-                    <p>Download App for Android and iOS mobile phone.</p>
-                    <div class="app-logo">
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPkAAADKCAMAAABQfxahAAABVlBMVEUAAAD///8hw/ESEhIVFRUKCgokJCQdHR0WWmwlyP0dx+7p6elOTk58fHz39/fd3d1dvnEIAADT09PvO1gAAwDw8PDKysr+vChJSUkAAAZXV1cMAADQ0NBubm7k5OQ/Pz+ZmZm4uLiKioqvr6+FhYWlpaWTk5Ofn59mZmZUVFQ1NTW/v787OzstLS0AAA1gYGBfxXQiyuYGEAoRGRNaj2pUm2cZIxlqvnBAaEkmTWEbT19QlWNXpm8kOigWW3MUN0JKd1ZKl1hdsXMrSzQZO01jwH1Fj10vYD4TQ1UoPzJMh1kxVjdDe1IlwP1cr3k9X0SFcjo+NA0bS0mpiS//xyiQcTT/uTTXqzxMPB+pgjDBnDnmtjENHzMLVV0nDgdbGCrXnjCuKELrR2R/IDH3OVFZRiFoHiacfSmgMEfpP1RRNyCeOEteJCkPRjwVR2XOPVZCDhYfAAAMAKs/AAAJCElEQVR4nO2c/Xva1hXHJdvggI1AGGTEiwDLgMEv4C1pEjdd1yzpPK9bt5QmTdskdeut9pol2///y86590q62JbAGJSVc7/PkxhhCZ3PPa8SSrSVhKTl/3+tzkj7WkKjqWWy5CuKnJwUOT0pcnpS5PSkyOlJkdOTIqcnRU5PipyeFDk9KXJ6UuT0pMjpSZHTkyKnJ8rkVKXI6UmR05MipydFTk+KnJ4UOT0pcnpS5PSkyOlJkdOTIqcnRU5PipyeFDk9KXJ6UuT0pMjpSZHTkyKnJ0VOT4r8etl2TGZ8AEWR/+a3sZnxARRFnrh776PYDIldoeQFE/56dP9BjLbEq1By8+FRRdM+Hjz6JE5zYlR4tP8u/amG6E9/H5sxsSqUvHIndXgMXv9sMHj8hzgtikvhPr+TWjp8AlF/Lzd4+vlHZow2xaPwPL+TSqcA3dQA/X7uj/BOIU7D5q4on6eXltLH4OzPB7lc7t4nsAiLxD6GfOnwUxPL3ABCHhrcIsX8OPJU+rhig9cH9weDR3+K0bC5axx5GgKe9fWnudwgdxKjZfPWOHLUkWlrH0OqA/3jP2v2goT8JORQ5mwTAj6H9CeLMspPQg7osH2XkfNKtwiagDydWlp6aNq8uWG24ygffeHerWUy/d6sbZ2tJvI5NLcnrK8L9sdfRKHXm0WdKZuZ1qqmVd259heruxbXbqPOTwavl6c6x4TkfzlEr5/kPP01dJRPNPVAa92pjNLWdP36VUtKH27twxvr8GK6O2qTkbNpDvr6ycBDH9zle12e6noOGmXkreoaM286t4eTGxK6scfJ5+pzDHgcZD30Qe5LCPeDK0G/j5Y5Nf4avO8kp7IqkrydAW1bGFLxkKfSeKvCC/gHgP23v2v2JZ9nwZCWv1WuTnlrN5KcJ7iWgVO14yBPA/qziud16GwHXw03vz4YPaYDdjSmsmNUkeQl8XoXamgsPkd6nOZOYIR/oNkA/nxz+OIb7UCiBzOqU5lxSROR7+h6MS5yDHjb/OzpFwx88/lwc3P4UronvwVmrId+4F5pdDtZ2h81Zd0vChL5yurIMRJ5GcgTEvle6UZLcCPypdThEZS5LzXb/haogRv+fPeNf0ge4+961fJYjYttb7vHm99u3XujjUNAcbtUtdyAfN1i7cvfaYTclaO9zD7faME6ufm86+2Sz1th/4/GzchBrypY1L/dDPTCP6Qol7cR7fodfo8vhN+atrgZebGZZYsnyNveTn7oS+Q9eN/1yBvensU6K308mpJslxmRp9Pfs+I29LiHm0PvM1YNDwTm17yvDAeHHo9uNTCkd9BIx8JOoG/j7jgFGFmHw3vk27iVt7BR9iXyfnJ/f7+3ZTBATs4W0smysGFHcwfgeoS21ZuSp15VDjT79QuJ3Pc5mrUtXu8EA0eLGWZhvmIhsOAn7FjE8bSErD0WuMw5e1mJfAW50XlNxuOfIlDG6+elpr6GKdFmna7t7e/ws82EHEpcofCmYB/84OX5UMpzWPPOdeRgQZ6/jeh19jeP2RUDkZOGH5XFgLzBRhUIa1f3V1QmN3Bg8vJ8FXybYG01z1oM5kcffpZnRJ46rmiF0x9/Epn+HPraS6mpOUFTS+4wlcGJnaRU8h1s+FUobWIb8ByWmZq/NB55lvHWqnJpRPLiGqrK88ojrzdxWq62mLtdvtJWeMG9MfkreP9042zjLUxwUN2Hw+/+oRUCdFeksSRk6AdgmPFNfNPLCva7VmBiPSAH95cabPrPZrwCLdd2mbwdhEKRfQhOekGo3Jr8mVnQzjdQ/9RM++Vw82do5tLkXr9SSxEsUZPIm4K8Jra7+Ds3yMfeCDkL6mbQ1MLI8QyG1XIdTo7edjGcilq4Jp9eYYxB8LMLhv4WevrP/7p8wVKVyjATa1JdiTyPNmWDGTeD5rVFRnMSj5y529kKnWQkciwkjEQUNxZJTlB1bkWO81sBQt3TGwj4K3cn0OkyOg4iNVbKO8EOO+hjjzSP7oZpTBdX8m5ADolhdC9ZeS15ImF4hWRX+BmoIbr0kVWbljyN0xvzOHP62S94hWpehsdapbvihH3sUVWOI9bDYcxBVjT40sCOa6xA9KWutuPnacPwRpkQnxsifTIi2rkdkFezID/SMMcvhMffvw05ipUao9rZarOk477F3qW7/RKbUDNiKbKZOqvbuDSYD8VGqezqEjnGg95cT/YxcrYiyeFzjEap39Q9cl4kIu8ITUr+b8jx0zNGfXG2cX71ZoynWlGeNUThWg/aMA97y9922Pa2dIxPvuz474lxIIy87h/rkTekg25Dnn4Hl6enGxfc5e//E/WJSTdoMH5T6WVFofbCtiN2aYp+tcMXzNlm5EUe58veuO83DHk0YMJoAYYyP3wXMsRg79f1oH9MTQ4/jgFcVPUznGPscJ+jMm7ecazWyPxU6uxarmzLdtNqtqUSVHOtZg37E5Cvd8v8mmOvY+WtRjAjJLrd8ojJK+UuP02t1YQTLsNIzzYbQREN0UTfsRyZZuFcZPhppMNvrUYw3t1KRRzgIzUB+SF4vHCKNf1iQzh81uq1DBEgTnC5dxtBbTeiWpo2Efk7uCLHqg717byi2fN4dAKqeJGlL8yx4deVN5ATcWEuNO6ZCfZ1ohhZ37+Z10MT+6w8NTqOPt7iSYRjwbgvt8aQp9JPTA1D/ezsx/MZmBSmst/2ZnIHsxp1YS40Ltp5VRetbI7fnPd4hzcas/iwulE0wi/MhcY8G/XOFJPbT7OwKFKrmfbWWHNnqEhyyPECtrOz09cxmhSTIskx1E8hw99GDy6/TkU99/rMxDswG7/8V6ss2mOAWtRzr68eVnBWn18r+8CKeL4d3Pwer8rMBXkY6pJCyW1bS5xDK7OvfFO8IIr81xyvF5OZa8xX+4sZ6ExR5JDoC+x09S/16EmR05MipydFTk+KnJ4UOT0pcnpS5PREl3zMl8wLrFl8Wf3rlCKnJ0VOT4qcnhQ5PSlyelLk9KTI6UmR05MipydFTk+KnJ4UOT0pcnpS5PSkyOlJkdOTIqcnRU5PipyeFDk9KXJ6UuT0pMjpSZHTkyKnp6SWmIc+NNYESv4Pj0bemjJxFvMAAAAASUVORK5CYII=" alt="" />
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPkAAADKCAMAAABQfxahAAAAflBMVEUAAAD///8SEhIKCgocHBwiIiLv7+88PDyfn5/8/PzMzMzDw8P39/fz8/Nvb2+IiIjm5uaOjo7c3NxZWVl8fHzR0dFlZWUrKyvAwMA0NDRGRkZPT0+3t7eoqKhpaWlTU1OTk5M7Ozvg4OB0dHSurq4oKCiBgYEwMDBDQ0OKiopbD2K6AAAG5klEQVR4nO2bbYPxOhCGW1boq64WRa2yFP//D56ZpK84G11ljzNzf9iHVmKuZDIzST1Gr19T77+vj450MPoGTfWYnJyYnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ56f23An4nJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6akD8sj5fLyT1+th8tQ1zX0XlrxaD5IfdyZo1I0tr9Vj5FsPwU2/I2NeqsfIAwnudmTLa/UQ+VqCv+cyf4h8oMDd98yMj1idKvKoM2NeqkfIpxI87ciSV+sRcoxv7pvO+O/Ie3mjwBSjD3zRf8eV3tbmwecUijZhnxeGMTzAhfmnLUzTmqxPzzDviWpJnqrSBWRNz8v+IrOt4oKZ3Pwfrr7vz35n2mqUOMnoaVVSK/LBxPxJbnjdJMQbi18YFgZFt0+KJG3IP4J/p1a6nt39L8N/VHX6pFlvQ77TgZvBVXdydQStzVqiC43C5Wy0s6SZsyRp3cnPakG+14LbVyt9BtEQbrSOfrFpelv1col/HNN02vah0f3kSy34jVlJYAsb/GIb6160sf+S3NGBT240AmffrEt378/nc/hn6Gffy/zr53NMjaso8xthELobl2/68x6Q2/lnQWFUdmAM5nNg2GQqGpyiz+xGnL2l+8ktHfnyug04uyfDu7p3FJZlLGw1TvLSF1QCxkxGTivuNb6s8qCV68J7C/7KwR0J2UHwLW8mljXGOtqD10uVe8RXp+S+Dty+0QiWa2wYYOlavh2AC1T9oOUwKsG4uOBW4QBHp8xmq7IJ+M6hSjAx3tyr9YTkn+WdtEvykY78VtqF5foljRPqy4AcZ3Oc4mbHWsrgARe8fSatF2VDWQbEQ/VmaDsweMKx7b3aLDj+LMWJR7eAtQTfYgUT8B9oEp5m2PeqQ3LtMr/h7N9gUo6h7qK5QvKc4dUUoCpvgWBYi2pqBzwt/NbJZ1gmGLWkEXCWz4g8G/GK9rbsujPyn8s3GPiP6zZxvlpFcW4jqulA0K2xrc100Ej8kSu73YUFjIztR6s8AvpQY4bk8ta5bI7DeeyOXFfG3DiZ+QDjpeFldBdVOMAkmUoj0/wKusGmaj1Yq5ia1skhJlhFEoBxtQaSXA4m+EBx7u+qINIRuW7OretRBmd3YcPifyFTmJOXDi3QIYZmVfIezMtgEcnhzmrkQLsr7vqSeZSfgPagv2nsoGK3GoQOyKcacvM6jcb12/tL8gnO/7DWsG9dB2UM116NfFrLIRjyv5AcP2Acm9ZcdvQAeWxqtL5q0rjtacmNG+QS3a/IJ7Varkm+wO8QUp7nuVl35NqsJi5bwHbL+hxL7XPAOnlQeHtBjiHrOjXCxXNFXg/bUCYpb5fkc7MRJfTqrpIx04sWdlXQ9j0V5UXlGnO3iHBF5prdtN2Ua7YghyH0CpPXRYST5DiSlxb8qLvJB1pyq7kjQ7Rz8cZR9okqcaEbbyV5Un3mym+kE/vVXg1Hp3BkT85/SR633A3fX7drjyVM0QjveLZwKN74am4xnyt3X7jSI2Qlo4I7ZIIqVqRFV7bKl0mBFZT5E1fQt5x5RT4zb8WaLsi1Cx1sqm8VmpWUVVTw8O/qsB1jnRLm5OboNDjhk6rqAR1EvyxcbsZBPlToIaNluJElqvB7xgkjLrpBSS6rzIk/PG4358nB0KrL/TnILgvmvtlIqmCo20dyLE88WaPgXUVuWupgs4zyUb1LvJCvtSQva4XAHmQUqcj7MvtbuK+75+yuxZmMrpaRKqt3nKXalht98RvJ00R90JNVloxwece7Kk4sy+rBTavu1CT7Ih8ttWz2NVdZFztpK+2UPLsDvPLv2TirV5C9LBuHKqtt9vY0ztQXq6zmJ9Np0jxoHGaJPbWTaFBc2OBnVESI4KVzzoc1HGfVBC/GsW07a39+B06bE0ihJ9ech4jLg6mhvs2z1IY80oLHmh7elVx/7DzQdPC25CsNuLZYfltyTU6/dRLXlPe25D9mNu/GqUxT/Z1XZKlcW1d470F++CG+t9op/b3aPj/fehUqlEvVIbz1bj+Ka/1rh2Pu8MEohLaLSD03MMWbzfivfi0STT3hVDN82gfeJH2/34u8n8VdicnpicnpicnpicnpicnpicnpicnpicnpicnpicnpiS659onQ/1a6577/XzE5PTE5PTE5PTE5PTE5PTE5PTE5PTE5PTE5PTE5PTE5PTE5PTE5PTE5PTE5PTE5PTE5PTE5PTE5PTE5PTE5PTE5PTE5PTE5PTE5PQ2M/jP011h3aPAPf35M3stQBDAAAAAASUVORK5CYII=" alt="" />
+        <!-- Featured Products -->
+        <div class="small-container">
+            <h2 class="title">Featured Products</h2>
+            <div class="row" id="productList">
+                <!-- Dynamic Products will be inserted here -->
+            </div>
+            <div id="bot"></div>
+        </div>
+
+        <!-- Cart Section -->
+        <div class="small2 font3" id="cart" style="display: none;">
+            <h2>Your Cart</h2>
+            <div id="cartItems">
+                No item yet
+            </div>
+            <button id="checkoutButton" class="btn">Checkout</button>
+        </div>
+
+        <div id="productModal" class="modal">
+            <!-- Product details will be dynamically inserted here -->
+        </div>
+
+        <div id="carouselExampleAutoplaying" class="carousel slide categories" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row slide-cont">
+                        <div class="col-3 category-item" data-category="Clothing">
+                            <img src="../assets/images/BUY-2_updated.gif" alt="" />
+                        </div>
+                        <div class="col-3 category-item" data-category="Electronics">
+                            <img src="../assets/images/star roll.gif" alt="" />
+                        </div>
+                        <div class="col-3 category-item" data-category="Accessories">
+                            <img src="../assets/images/black.gif" alt="" />
+                        </div>
                     </div>
                 </div>
-                <div class="footer-col-2">
-                    <div class="logo">weSHOP</div>
-                    <p>Our Purpose Is To Sustainably Make the Pleasure and Benefits of Sports Accessible to the Many.
-                    </p>
+                <div class="carousel-item">
+                    <img src="../assets/images/Desktop-Homepage-Slider_-712x384.gif" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="../assets/images/gadigan.webp" class="d-block w-100" alt=""
+                        style="object-fit: contain;" />
+
+                </div>
+                <div class="carousel-item">
+                    <img src="../assets/images/smart watch.webp" class="d-block w-100" alt=""
+                        style="object-fit: contain;" />
                 </div>
             </div>
-            <hr />
-            <p class="copyright">Copyright &copy; 2024 - Red Store</p>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-    </div>
+
+     
+
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col-1">
+                        <h3>Download Our App</h3>
+                        <p>Download App for Android and iOS mobile phone.</p>
+                        <div class="app-logo">
+                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPkAAADKCAMAAABQfxahAAABVlBMVEUAAAD///8hw/ESEhIVFRUKCgokJCQdHR0WWmwlyP0dx+7p6elOTk58fHz39/fd3d1dvnEIAADT09PvO1gAAwDw8PDKysr+vChJSUkAAAZXV1cMAADQ0NBubm7k5OQ/Pz+ZmZm4uLiKioqvr6+FhYWlpaWTk5Ofn59mZmZUVFQ1NTW/v787OzstLS0AAA1gYGBfxXQiyuYGEAoRGRNaj2pUm2cZIxlqvnBAaEkmTWEbT19QlWNXpm8kOigWW3MUN0JKd1ZKl1hdsXMrSzQZO01jwH1Fj10vYD4TQ1UoPzJMh1kxVjdDe1IlwP1cr3k9X0SFcjo+NA0bS0mpiS//xyiQcTT/uTTXqzxMPB+pgjDBnDnmtjENHzMLVV0nDgdbGCrXnjCuKELrR2R/IDH3OVFZRiFoHiacfSmgMEfpP1RRNyCeOEteJCkPRjwVR2XOPVZCDhYfAAAMAKs/AAAJCElEQVR4nO2c/Xva1hXHJdvggI1AGGTEiwDLgMEv4C1pEjdd1yzpPK9bt5QmTdskdeut9pol2///y86590q62JbAGJSVc7/PkxhhCZ3PPa8SSrSVhKTl/3+tzkj7WkKjqWWy5CuKnJwUOT0pcnpS5PSkyOlJkdOTIqcnRU5PipyeFDk9KXJ6UuT0pMjpSZHTkyKnJ8rkVKXI6UmR05MipydFTk+KnJ4UOT0pcnpS5PSkyOlJkdOTIqcnRU5PipyeFDk9KXJ6UuT0pMjpSZHTkyKnJ0VOT4r8etl2TGZ8AEWR/+a3sZnxARRFnrh776PYDIldoeQFE/56dP9BjLbEq1By8+FRRdM+Hjz6JE5zYlR4tP8u/amG6E9/H5sxsSqUvHIndXgMXv9sMHj8hzgtikvhPr+TWjp8AlF/Lzd4+vlHZow2xaPwPL+TSqcA3dQA/X7uj/BOIU7D5q4on6eXltLH4OzPB7lc7t4nsAiLxD6GfOnwUxPL3ABCHhrcIsX8OPJU+rhig9cH9weDR3+K0bC5axx5GgKe9fWnudwgdxKjZfPWOHLUkWlrH0OqA/3jP2v2goT8JORQ5mwTAj6H9CeLMspPQg7osH2XkfNKtwiagDydWlp6aNq8uWG24ygffeHerWUy/d6sbZ2tJvI5NLcnrK8L9sdfRKHXm0WdKZuZ1qqmVd259heruxbXbqPOTwavl6c6x4TkfzlEr5/kPP01dJRPNPVAa92pjNLWdP36VUtKH27twxvr8GK6O2qTkbNpDvr6ycBDH9zle12e6noOGmXkreoaM286t4eTGxK6scfJ5+pzDHgcZD30Qe5LCPeDK0G/j5Y5Nf4avO8kp7IqkrydAW1bGFLxkKfSeKvCC/gHgP23v2v2JZ9nwZCWv1WuTnlrN5KcJ7iWgVO14yBPA/qziud16GwHXw03vz4YPaYDdjSmsmNUkeQl8XoXamgsPkd6nOZOYIR/oNkA/nxz+OIb7UCiBzOqU5lxSROR7+h6MS5yDHjb/OzpFwx88/lwc3P4UronvwVmrId+4F5pdDtZ2h81Zd0vChL5yurIMRJ5GcgTEvle6UZLcCPypdThEZS5LzXb/haogRv+fPeNf0ge4+961fJYjYttb7vHm99u3XujjUNAcbtUtdyAfN1i7cvfaYTclaO9zD7faME6ufm86+2Sz1th/4/GzchBrypY1L/dDPTCP6Qol7cR7fodfo8vhN+atrgZebGZZYsnyNveTn7oS+Q9eN/1yBvensU6K308mpJslxmRp9Pfs+I29LiHm0PvM1YNDwTm17yvDAeHHo9uNTCkd9BIx8JOoG/j7jgFGFmHw3vk27iVt7BR9iXyfnJ/f7+3ZTBATs4W0smysGFHcwfgeoS21ZuSp15VDjT79QuJ3Pc5mrUtXu8EA0eLGWZhvmIhsOAn7FjE8bSErD0WuMw5e1mJfAW50XlNxuOfIlDG6+elpr6GKdFmna7t7e/ws82EHEpcofCmYB/84OX5UMpzWPPOdeRgQZ6/jeh19jeP2RUDkZOGH5XFgLzBRhUIa1f3V1QmN3Bg8vJ8FXybYG01z1oM5kcffpZnRJ46rmiF0x9/Epn+HPraS6mpOUFTS+4wlcGJnaRU8h1s+FUobWIb8ByWmZq/NB55lvHWqnJpRPLiGqrK88ojrzdxWq62mLtdvtJWeMG9MfkreP9042zjLUxwUN2Hw+/+oRUCdFeksSRk6AdgmPFNfNPLCva7VmBiPSAH95cabPrPZrwCLdd2mbwdhEKRfQhOekGo3Jr8mVnQzjdQ/9RM++Vw82do5tLkXr9SSxEsUZPIm4K8Jra7+Ds3yMfeCDkL6mbQ1MLI8QyG1XIdTo7edjGcilq4Jp9eYYxB8LMLhv4WevrP/7p8wVKVyjATa1JdiTyPNmWDGTeD5rVFRnMSj5y529kKnWQkciwkjEQUNxZJTlB1bkWO81sBQt3TGwj4K3cn0OkyOg4iNVbKO8EOO+hjjzSP7oZpTBdX8m5ADolhdC9ZeS15ImF4hWRX+BmoIbr0kVWbljyN0xvzOHP62S94hWpehsdapbvihH3sUVWOI9bDYcxBVjT40sCOa6xA9KWutuPnacPwRpkQnxsifTIi2rkdkFezID/SMMcvhMffvw05ipUao9rZarOk477F3qW7/RKbUDNiKbKZOqvbuDSYD8VGqezqEjnGg95cT/YxcrYiyeFzjEap39Q9cl4kIu8ITUr+b8jx0zNGfXG2cX71ZoynWlGeNUThWg/aMA97y9922Pa2dIxPvuz474lxIIy87h/rkTekg25Dnn4Hl6enGxfc5e//E/WJSTdoMH5T6WVFofbCtiN2aYp+tcMXzNlm5EUe58veuO83DHk0YMJoAYYyP3wXMsRg79f1oH9MTQ4/jgFcVPUznGPscJ+jMm7ecazWyPxU6uxarmzLdtNqtqUSVHOtZg37E5Cvd8v8mmOvY+WtRjAjJLrd8ojJK+UuP02t1YQTLsNIzzYbQREN0UTfsRyZZuFcZPhppMNvrUYw3t1KRRzgIzUB+SF4vHCKNf1iQzh81uq1DBEgTnC5dxtBbTeiWpo2Efk7uCLHqg717byi2fN4dAKqeJGlL8yx4deVN5ATcWEuNO6ZCfZ1ohhZ37+Z10MT+6w8NTqOPt7iSYRjwbgvt8aQp9JPTA1D/ezsx/MZmBSmst/2ZnIHsxp1YS40Ltp5VRetbI7fnPd4hzcas/iwulE0wi/MhcY8G/XOFJPbT7OwKFKrmfbWWHNnqEhyyPECtrOz09cxmhSTIskx1E8hw99GDy6/TkU99/rMxDswG7/8V6ss2mOAWtRzr68eVnBWn18r+8CKeL4d3Pwer8rMBXkY6pJCyW1bS5xDK7OvfFO8IIr81xyvF5OZa8xX+4sZ6ExR5JDoC+x09S/16EmR05MipydFTk+KnJ4UOT0pcnpS5PREl3zMl8wLrFl8Wf3rlCKnJ0VOT4qcnhQ5PSlyelLk9KTI6UmR05MipydFTk+KnJ4UOT0pcnpS5PSkyOlJkdOTIqcnRU5PipyeFDk9KXJ6UuT0pMjpSZHTkyKnp6SWmIc+NNYESv4Pj0bemjJxFvMAAAAASUVORK5CYII="
+                                alt="" />
+                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPkAAADKCAMAAABQfxahAAAAflBMVEUAAAD///8SEhIKCgocHBwiIiLv7+88PDyfn5/8/PzMzMzDw8P39/fz8/Nvb2+IiIjm5uaOjo7c3NxZWVl8fHzR0dFlZWUrKyvAwMA0NDRGRkZPT0+3t7eoqKhpaWlTU1OTk5M7Ozvg4OB0dHSurq4oKCiBgYEwMDBDQ0OKiopbD2K6AAAG5klEQVR4nO2bbYPxOhCGW1boq64WRa2yFP//D56ZpK84G11ljzNzf9iHVmKuZDIzST1Gr19T77+vj450MPoGTfWYnJyYnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ56f23An4nJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6YnJ6akD8sj5fLyT1+th8tQ1zX0XlrxaD5IfdyZo1I0tr9Vj5FsPwU2/I2NeqsfIAwnudmTLa/UQ+VqCv+cyf4h8oMDd98yMj1idKvKoM2NeqkfIpxI87ciSV+sRcoxv7pvO+O/Ie3mjwBSjD3zRf8eV3tbmwecUijZhnxeGMTzAhfmnLUzTmqxPzzDviWpJnqrSBWRNz8v+IrOt4oKZ3Pwfrr7vz35n2mqUOMnoaVVSK/LBxPxJbnjdJMQbi18YFgZFt0+KJG3IP4J/p1a6nt39L8N/VHX6pFlvQ77TgZvBVXdydQStzVqiC43C5Wy0s6SZsyRp3cnPakG+14LbVyt9BtEQbrSOfrFpelv1col/HNN02vah0f3kSy34jVlJYAsb/GIb6160sf+S3NGBT240AmffrEt378/nc/hn6Gffy/zr53NMjaso8xthELobl2/68x6Q2/lnQWFUdmAM5nNg2GQqGpyiz+xGnL2l+8ktHfnyug04uyfDu7p3FJZlLGw1TvLSF1QCxkxGTivuNb6s8qCV68J7C/7KwR0J2UHwLW8mljXGOtqD10uVe8RXp+S+Dty+0QiWa2wYYOlavh2AC1T9oOUwKsG4uOBW4QBHp8xmq7IJ+M6hSjAx3tyr9YTkn+WdtEvykY78VtqF5foljRPqy4AcZ3Oc4mbHWsrgARe8fSatF2VDWQbEQ/VmaDsweMKx7b3aLDj+LMWJR7eAtQTfYgUT8B9oEp5m2PeqQ3LtMr/h7N9gUo6h7qK5QvKc4dUUoCpvgWBYi2pqBzwt/NbJZ1gmGLWkEXCWz4g8G/GK9rbsujPyn8s3GPiP6zZxvlpFcW4jqulA0K2xrc100Ej8kSu73YUFjIztR6s8AvpQY4bk8ta5bI7DeeyOXFfG3DiZ+QDjpeFldBdVOMAkmUoj0/wKusGmaj1Yq5ia1skhJlhFEoBxtQaSXA4m+EBx7u+qINIRuW7OretRBmd3YcPifyFTmJOXDi3QIYZmVfIezMtgEcnhzmrkQLsr7vqSeZSfgPagv2nsoGK3GoQOyKcacvM6jcb12/tL8gnO/7DWsG9dB2UM116NfFrLIRjyv5AcP2Acm9ZcdvQAeWxqtL5q0rjtacmNG+QS3a/IJ7Varkm+wO8QUp7nuVl35NqsJi5bwHbL+hxL7XPAOnlQeHtBjiHrOjXCxXNFXg/bUCYpb5fkc7MRJfTqrpIx04sWdlXQ9j0V5UXlGnO3iHBF5prdtN2Ua7YghyH0CpPXRYST5DiSlxb8qLvJB1pyq7kjQ7Rz8cZR9okqcaEbbyV5Un3mym+kE/vVXg1Hp3BkT85/SR633A3fX7drjyVM0QjveLZwKN74am4xnyt3X7jSI2Qlo4I7ZIIqVqRFV7bKl0mBFZT5E1fQt5x5RT4zb8WaLsi1Cx1sqm8VmpWUVVTw8O/qsB1jnRLm5OboNDjhk6rqAR1EvyxcbsZBPlToIaNluJElqvB7xgkjLrpBSS6rzIk/PG4358nB0KrL/TnILgvmvtlIqmCo20dyLE88WaPgXUVuWupgs4zyUb1LvJCvtSQva4XAHmQUqcj7MvtbuK+75+yuxZmMrpaRKqt3nKXalht98RvJ00R90JNVloxwece7Kk4sy+rBTavu1CT7Ih8ttWz2NVdZFztpK+2UPLsDvPLv2TirV5C9LBuHKqtt9vY0ztQXq6zmJ9Np0jxoHGaJPbWTaFBc2OBnVESI4KVzzoc1HGfVBC/GsW07a39+B06bE0ihJ9ech4jLg6mhvs2z1IY80oLHmh7elVx/7DzQdPC25CsNuLZYfltyTU6/dRLXlPe25D9mNu/GqUxT/Z1XZKlcW1d470F++CG+t9op/b3aPj/fehUqlEvVIbz1bj+Ka/1rh2Pu8MEohLaLSD03MMWbzfivfi0STT3hVDN82gfeJH2/34u8n8VdicnpicnpicnpicnpicnpicnpicnpicnpicnpicnpiS659onQ/1a6577/XzE5PTE5PTE5PTE5PTE5PTE5PTE5PTE5PTE5PTE5PTE5PTE5PTE5PTE5PTE5PTE5PTE5PTE5PTE5PTE5PTE5PTE5PTE5PTE5PTE5PQ2M/jP011h3aPAPf35M3stQBDAAAAAASUVORK5CYII="
+                                alt="" />
+                        </div>
+                    </div>
+                    <div class="footer-col-2">
+                        <div class="logo">weSHOP</div>
+                        <p>Our Purpose Is To Sustainably Make the Pleasure and Benefits of Sports Accessible to the
+                            Many.
+                        </p>
+                    </div>
+                </div>
+                <hr />
+                <p class="copyright">Copyright &copy; 2024 - Red Store</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="auth-page">
+        <div class="auth-page">
+            <div class="auth-card">
+                <!-- Left side (branding / marketing) -->
+                <aside class="auth-aside">
+                    <div class="indim">
+                        <div class="auth-logo font3">WeShop</div>
+                        <h2>Welcome back</h2>
+                        <p>
+                            Fast, secure shopping with personalized recommendations.
+                            Sign in or create an account to continue.
+                        </p>
+                        <ul class="auth-benefits">
+                            <li>• Track your orders in real time</li>
+                            <li>• Save your favourites and wishlists</li>
+                            <li>• Get exclusive offers and deals</li>
+                        </ul>
+                    </div>
+                </aside>
+
+                <!-- Right side (forms) -->
+                <main class="auth-main">
+                    <!-- Tabs -->
+                    <div class="auth-tabs">
+                        <button class="auth-tab active" data-auth="login">Login</button>
+                        <button class="auth-tab" data-auth="signup">Sign up</button>
+                    </div>
+
+                    <!-- Login form -->
+                    <form id="loginForm" class="auth-form auth-form--active">
+                        <div class="auth-field">
+                            <label for="login-email">Email</label>
+                            <input type="email" id="login-email" placeholder="you@example.com" required />
+                        </div>
+
+                        <div class="auth-field">
+                            <label for="login-password">Password</label>
+                            <input type="password" id="login-password" placeholder="••••••••" required />
+                        </div>
+
+                        <div class="auth-row-between">
+                            <label class="auth-checkbox">
+                                <input type="checkbox" /> <span>Remember me</span>
+                            </label>
+                            <a href="#" class="auth-link">Forgot password?</a>
+                        </div>
+
+                        <button type="submit" class="btn auth-btn-primary" id="log">Login</button>
+
+                        <div class="auth-divider">
+                            <span>or</span>
+                        </div>
+
+                        <button type="button" class="auth-btn-outline">
+                            Continue with Google
+                        </button>
+                    </form>
+
+                    <!-- Signup form -->
+                    <form id="signupForm" class="auth-form">
+                        <div class="auth-field">
+                            <label for="signup-name">Full name</label>
+                            <input type="text" id="signup-name" placeholder="John Doe" required />
+                        </div>
+
+                        <div class="auth-field">
+                            <label for="signup-email">Email</label>
+                            <input type="email" id="signup-email" placeholder="you@example.com" required />
+                        </div>
+                        <div class="auth-field">
+                            <label for="signup-password">Password</label>
+                            <input type="password" id="signup-password" placeholder="Create a strong password"
+                                required />
+                        </div>
+                        <label class="auth-checkbox auth-checkbox-full">
+                            <input type="checkbox" required />
+                            <span>I agree to the Terms of Service and Privacy Policy</span>
+                        </label>
+                        <button type="submit" class="btn auth-btn-primary">Create account</button>
+                        <button type="button" class="auth-btn-outline">
+                            Signup with Google
+                        </button>
+
+                        <div class="auth-footer-text">
+                            Already have an account?
+                            <button type="button" class="auth-link-button" data-auth="login">
+                                Login
+                            </button>
+                        </div>
+                    </form>
+                </main>
+            </div>
+        </div>
+    </section>
+
 </body>
 
 

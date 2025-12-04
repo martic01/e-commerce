@@ -5,6 +5,7 @@ import './bootstrap.min.js';
 import { fetchCategories, fetchAndDisplayProducts, closeProductModal } from './product.js';
 import { handleSearch } from './search.js';
 import { updateCartView, cartin } from './cart.js';
+import { switchPage } from './account.js';
 
 let currentcart = cartin();
 let scrollTime = 15;
@@ -158,7 +159,7 @@ function takeCommand(message) {
         speak('ok...');
         window.scrollTo({ top: 0, behavior: 'smooth' });
         $('#cart').fadeToggle();
-    } else if (message.includes("list cart") || message.includes("list cat") || message.includes("list cut") || message.includes("list cards") || message.includes("list card") ) {
+    } else if (message.includes("list cart") || message.includes("list cat") || message.includes("list cut") || message.includes("list cards") || message.includes("list card")) {
         if (currentcart.length) {
             speak(`You have ${currentcart.length} product...`);
         } else {
@@ -171,9 +172,9 @@ function takeCommand(message) {
     } else if (message.includes("quiet")) {
         speak('Sorry...');
         setTimeout(() => {
-           window.speechSynthesis.cancel();  
-        },300);
-       
+            window.speechSynthesis.cancel();
+        }, 300);
+
     } else if (message.includes("close")) {
         closeProductModal();
     } else {
@@ -257,6 +258,14 @@ $(document).ready(() => {
     document.getElementById('home').addEventListener('click', function () {
         fetchAndDisplayProducts("all");
     });
+
+   $('.acct').click(function () {
+        switchPage()
+    })
+    
+    $('#log').click(function () {
+        switchPage()
+    })
 
     // Initialize cart view
     updateCartView();
